@@ -7,13 +7,18 @@ namespace Arman.Tests
     /// https://atcoder.jp/contests/abc141/tasks/abc141_a
     /// </summary>
     [TestClass]
-    public class AbcTemplateTest : BaseUnitTest
+    public class Abc086ATest : BaseUnitTest
     {
         [TestMethod]
         public void 基本ケース()
         {
-            var actual = AbcTemplate.Resolve(3);
-            Assert.AreEqual(9, actual);
+            // 奇数
+            var actual = Abc086A.Resolve(new long[]{ 3, 5 });
+            Assert.AreEqual("Odd", actual);
+
+            // 偶数
+            actual = Abc086A.Resolve(new long[] { 3, 4 });
+            Assert.AreEqual("Even", actual);
         }
     }
 }
