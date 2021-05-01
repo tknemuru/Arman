@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Arman.Questions
 {
-    // https://atcoder.jp/contests/abc141/tasks/abc141_a
+    /// <summary>
+    /// https://atcoder.jp/contests/abc141/tasks/abc141_a
+    /// </summary>
     public class AbcTemplate
     {
         public static void Main(string[] args)
@@ -34,6 +36,11 @@ namespace Arman.Questions
             Console.WriteLine(result);
 
             Console.Out.Flush();
+        }
+
+        public static long Resolve(long n)
+        {
+            return n * n;
         }
     }
 }

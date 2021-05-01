@@ -6,7 +6,4 @@
     <StartupObject>Arman.Program</StartupObject>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Questions\" />
-  </ItemGroup>
 </Project>
