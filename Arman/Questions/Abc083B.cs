@@ -43,8 +43,13 @@ namespace Arman.Questions
             var max = nums[2];
             for (var i = 1L; i <= target; i++)
             {
-                var padNumStr = i.ToString().PadLeft(6, '0');
-                var padSum = padNumStr.Sum(c => Convert.ToInt64(c.ToString()));
+                var n = i;
+                var padSum = 0L;
+                while (n > 0)
+                {
+                    padSum += n % 10;
+                    n /= 10;
+                }
                 if (min <= padSum && padSum <= max)
                 {
                     sum += i;
