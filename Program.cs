@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Arman.Questions;
+using System;
 
 namespace Arman
 {
@@ -6,7 +7,7 @@ namespace Arman
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            AbcTemplate.Main(args);
         }
     }
 }
