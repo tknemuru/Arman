@@ -46,9 +46,13 @@ namespace Arman.Questions
             var answer = "-1 -1 -1";
             for (var t = maxTen; 0L <= t; t--)
             {
-                for (var f = maxFive; 0L <= f; f--)
+                var remF = N - t;
+                var maxF = Math.Min(remF, maxFive);
+                for (var f = maxF; 0L <= f; f--)
                 {
-                    for (var o = maxOne; 0L <= o; o--)
+                    var remO = remF - f;
+                    var maxO = Math.Min(remO, maxOne);
+                    for (var o = maxO; 0L <= o; o--)
                     {
                         var sumNum = t + f + o;
                         var sumMoney = t * 10000L + f * 5000L + o * 1000L;
