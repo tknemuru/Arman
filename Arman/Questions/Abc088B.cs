@@ -17,27 +17,36 @@ namespace Arman.Questions
             Console.SetOut(sw);
 
             // 文字列の入力
-            string s = Console.ReadLine();
+            string s1 = Console.ReadLine();
+            string s2 = Console.ReadLine();
 
-            // 整数の入力
-            long n = long.Parse(Console.ReadLine());
+            //// 整数の入力
+            //long n = long.Parse(Console.ReadLine());
 
-            // 文字列配列の入力
-            string[] inputStrArray = Console.ReadLine().Split(' ');
+            //// 文字列配列の入力
+            //string[] inputStrArray = Console.ReadLine().Split(' ');
 
-            // 整数配列の入力
-            var inputLongArray = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+            //// 整数配列の入力
+            //var inputLongArray = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
 
-            var result = Resolve(inputLongArray);
+            var result = Resolve(s1, s2);
 
             Console.WriteLine(result);
 
             Console.Out.Flush();
         }
 
-        public static long Resolve(long[] nums)
+        public static long Resolve(string NStr, string numsStr)
         {
-            return nums[0] * nums[1];
+            var rand = new Random();
+            var N = long.Parse(NStr);
+            var nums = numsStr.Split(' ')
+                .Select(i => long.Parse(i))
+                .OrderBy(n => rand.Next())
+                .OrderByDescending(n => n);
+            var alice = nums.Where((n, i) => i % 2 == 0).Sum(n => n);
+            var bob = nums.Where((n, i) => i % 2 == 1).Sum(n => n);
+            return alice - bob;
         }
     }
 }
