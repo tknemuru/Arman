@@ -9,8 +9,62 @@ namespace Arman.Tests
         [TestMethod]
         public void 基本ケース()
         {
-            var actual = Atc001DfsA.Resolve(new long[] { 3, 3 });
-            Assert.AreEqual(9, actual);
+            var actual = Atc001DfsA.Resolve(
+                4, 5,
+                new string[]
+                {
+                    "s####",
+                    "....#",
+                    "#####",
+                    "#...g"
+                }
+            );
+            Assert.AreEqual("No", actual);
+            actual = Atc001DfsA.Resolve(
+                4, 4,
+                new string[]
+                {
+                    "...s",
+                    "....",
+                    "....",
+                    ".g.."
+                }
+            );
+            Assert.AreEqual("Yes", actual);
+            actual = Atc001DfsA.Resolve(
+                10, 10,
+                new string[]
+                {
+                    "s........",
+                    "#########.",
+                    "#.......#.",
+                    "#..####.#.",
+                    "##....#.#.",
+                    "#####.#.#.",
+                    "g.#.#.#.#.",
+                    "#.#.#.#.#.",
+                    "###.#.#.#.",
+                    "#.....#..."
+                }
+            );
+            Assert.AreEqual("No", actual);
+            actual = Atc001DfsA.Resolve(
+                10, 10,
+                new string[]
+                {
+                    "s.........",
+                    "#########.",
+                    "#.......#.",
+                    "#..####.#.",
+                    "##....#.#.",
+                    "#####.#.#.",
+                    "g.#.#.#.#.",
+                    "#.#.#.#.#.",
+                    "#.#.#.#.#.",
+                    "#.....#..."
+                }
+            );
+            Assert.AreEqual("Yes", actual);
         }
     }
 }
