@@ -50,17 +50,13 @@ namespace Arman.Questions
                 var maxF = Math.Min(remF, maxFive);
                 for (var f = maxF; 0L <= f; f--)
                 {
-                    var remO = remF - f;
-                    var maxO = Math.Min(remO, maxOne);
-                    for (var o = maxO; 0L <= o; o--)
+                    var o = remF - f;
+                    var sumNum = t + f + o;
+                    var sumMoney = t * 10000L + f * 5000L + o * 1000L;
+                    if (sumNum == N && sumMoney == Y)
                     {
-                        var sumNum = t + f + o;
-                        var sumMoney = t * 10000L + f * 5000L + o * 1000L;
-                        if (sumNum == N && sumMoney == Y)
-                        {
-                            answer = $"{t} {f} {o}";
-                            return answer;
-                        }
+                        answer = $"{t} {f} {o}";
+                        return answer;
                     }
                 }
             }
