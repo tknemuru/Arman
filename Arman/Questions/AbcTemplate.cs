@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Arman.Questions
 {
     /// <summary>
-    /// https://atcoder.jp/contests/abc999/tasks/abc999_XXX
+    /// https
     /// </summary>
     public class AbcTemplate
     {

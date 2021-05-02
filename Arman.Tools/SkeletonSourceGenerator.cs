@@ -32,7 +32,8 @@ namespace Arman.Tools
                 var r = l
                         .Replace("abc999", idKey)
                         .Replace("XXX", idLevel)
-                        .Replace("AbcTemplate", upperId);
+                        .Replace("AbcTemplate", upperId)
+                        .Replace("https", url);
                 return r;
             };
             var templateLines = FileHelper.ReadTextLines($"{RootDir}/Arman/Questions/AbcTemplate.cs");
