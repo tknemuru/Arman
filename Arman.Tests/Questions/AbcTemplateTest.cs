@@ -10,7 +10,7 @@ namespace Arman.Tests
         public void 基本ケース()
         {
             var actual = AbcTemplate.Resolve(new long[] { 3, 3 });
-            Assert.AreEqual("9", actual);
+            Assert.AreEqual(9, actual);
         }
     }
 }

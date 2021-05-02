@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Arman.Questions
 {
     /// <summary>
-    /// https://atcoder.jp/contests/abc999/tasks/abc999_XXX
+    /// https://atcoder.jp/contests/abc088/tasks/abc088_b
     /// </summary>
-    public class AbcTemplate
+    public class Abc088B
     {
         public static void Main(string[] args)
         {
