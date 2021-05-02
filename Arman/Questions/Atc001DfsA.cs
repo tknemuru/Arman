@@ -101,12 +101,17 @@ namespace Arman.Questions
             var orgRow = map[current[1]];
             var index = current[0];
             map[current[1]] = $"{orgRow.Substring(0, index)}{"#"}{orgRow.Substring(index + 1)}";
-            var cans = new List<bool>();
+            var result = false;
             foreach (var dir in DirectionMoves)
             {
-                cans.Add(CanGoal(AddDirection(current, dir.Key), g, map));
+                var next = AddDirection(current, dir.Key);
+                result = CanGoal(next, g, map);
+                if (result)
+                {
+                    break;
+                }
             }
-            return cans.Any(c => c);
+            return result;
         }
 
         private static int[] AddDirection(int[] curr, Direction dir)
