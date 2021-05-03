@@ -28,16 +28,16 @@ namespace Arman.Questions
             // 整数配列の入力
             var inputLongArray = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
 
-            var result = Resolve(inputLongArray);
+            var result = Resolve(inputStrArray);
 
             Console.WriteLine(result);
 
             Console.Out.Flush();
         }
 
-        public static long Resolve(long[] nums)
+        public static long Resolve(string[] nums)
         {
-            return nums[0] * nums[1];
+            return 9;
         }
     }
 }

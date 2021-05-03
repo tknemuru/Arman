@@ -21,7 +21,7 @@ namespace Arman.Tools
         /// スケルトンソースを生成します。
         /// </summary>
         /// <param name="url">URL</param>
-        public void Execute(String url)
+        public void Execute(String url, string[] args)
         {
             var rootId = url.Split('/')[4];
             var ids = url.Split('/').Last().Split('_');
@@ -54,6 +54,16 @@ namespace Arman.Tools
             {
                 FileHelper.WriteLine(l, path, append);
                 append = true;
+            }
+
+            // テストファイル
+            if (args.Contains("-i"))
+            {
+                for (var i = 1; i <= 5; i++)
+                {
+                    path = $"{RootDir}/Arman.Tests/Resources/{upperId}Test/001-00{i}.txt";
+                    FileHelper.WriteLine("", path, false);
+                }
             }
         }
     }

@@ -23,6 +23,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Questions\" />
+    <Folder Include="Resources\AbcTemplateTest\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Arman\Arman.csproj" />

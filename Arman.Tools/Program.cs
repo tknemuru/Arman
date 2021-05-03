@@ -8,7 +8,7 @@ namespace Arman.Tools
         {
             try
             {
-                new SkeletonSourceGenerator().Execute(args[0]);
+                new SkeletonSourceGenerator().Execute(args[0], args);
                 Console.WriteLine("Generate done.");
             } catch (Exception ex)
             {
