@@ -64,58 +64,43 @@ namespace Arman.Questions
             var W = nums[1];
             var s = args[1].Split(' ').Select(i => int.Parse(i) - 1).ToArray();
             var g = args[2].Split(' ').Select(i => int.Parse(i) - 1).ToArray();
-            var walls = new bool[H][];
+            var map = new int[H][];
             for (var h = 0; h < H; h++)
             {
                 var rowStr = args[h + 3];
-                var row = new bool[W];
+                var row = new int[W];
                 var length = row.Length;
                 for (var w = 0; w < length; w++)
                 {
-                    row[w] = rowStr[w] == '#';
+                    row[w] = rowStr[w] == '#' ? 0 : -1;
                 }
-                walls[h] = row;
+                map[h] = row;
             }
+            // スタートは0
+            map[s[0]][s[1]] = 0;
 
-            var distance = 0;
-            var queue = new List<int[]>();
-            queue.Add(s);
-            var hasGoal = false;
-            while (true)
+            var queue = new Queue<int[]>();
+            queue.Enqueue(s);
+            int[] curr;
+            while (queue.Count() > 0)
             {
-                foreach (var q in queue)
-                {
-                    var current = q;
-                    if (current[0] == g[0] && current[1] == g[1])
-                    {
-                        hasGoal = true;
-                        break;
-                    }
-                    // 一度通ったところは壁にする
-                    walls[current[0]][current[1]] = true;
-                }
-                if (hasGoal)
+                curr = queue.Dequeue();
+                if (curr[0] == g[0] && curr[1] == g[1])
                 {
                     break;
                 }
-                var nextQueue = new List<int[]>();
-                foreach (var q in queue)
-                {
-                    nextQueue = nextQueue.Union(
-                        Directions
-                            .Select(d => new int[] { q[0] + d[0], q[1] + d[1] })
-                            .Where(n => {
-                                var can = n[0] > -1 && n[1] > -1 && !walls[n[0]][n[1]];
-                                walls[n[0]][n[1]] = true;
-                                return can;
-                            }))
-                        .ToList();
-                }
-                Debug.Assert(nextQueue.Count() > 0);
-                queue = nextQueue;
-                distance++;
+                Directions
+                    .Select(d => new int[] { curr[0] + d[0], curr[1] + d[1] })
+                    .Where(n => n[0] > -1 && n[1] > -1 && map[n[0]][n[1]] == -1)
+                    .Select(n =>
+                    {
+                        map[n[0]][n[1]] = map[curr[0]][curr[1]] + 1;
+                        queue.Enqueue(n);
+                        return n;
+                    })
+                    .ToList();
             }
-            return distance;
+            return map[g[0]][g[1]];
         }
     }
 }
