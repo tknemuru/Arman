@@ -14,7 +14,7 @@ namespace Arman.Tests
         [TestMethod]
         public void 基本ケース()
         {
-            Test();
+            //Test();
             TestFromFile();
         }
 
@@ -47,23 +47,15 @@ namespace Arman.Tests
         {
             var input = this.ReadResource(1, 1, ResourceType.In).ToArray();
             var actual = Abc0073.Resolve(input);
-            Assert.AreEqual(9, actual);
+            Assert.AreEqual(11, actual);
 
             input = this.ReadResource(1, 2, ResourceType.In).ToArray();
             actual = Abc0073.Resolve(input);
-            Assert.AreEqual(9, actual);
+            Assert.AreEqual(10, actual);
 
             input = this.ReadResource(1, 3, ResourceType.In).ToArray();
             actual = Abc0073.Resolve(input);
-            Assert.AreEqual(9, actual);
-
-            input = this.ReadResource(1, 4, ResourceType.In).ToArray();
-            actual = Abc0073.Resolve(input);
-            Assert.AreEqual(9, actual);
-
-            input = this.ReadResource(1, 5, ResourceType.In).ToArray();
-            actual = Abc0073.Resolve(input);
-            Assert.AreEqual(9, actual);
+            Assert.AreEqual(94, actual);
         }
     }
 }

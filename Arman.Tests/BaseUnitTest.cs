@@ -21,7 +21,7 @@ namespace Arman.Tests
         /// <param name="extension">拡張子</param>
         protected string GetResourcePath(int index, int childIndex, ResourceType type, string extension = "txt")
         {
-            return $"../../../Resources/{this.GetType().Name}/{index.ToString().PadLeft(3, '0')}-{childIndex.ToString().PadLeft(3, '0')}-{type.ToString().ToLower()}.{extension}";
+            return $"../../../Resources/{this.GetType().Name}/{this.GetType().Name}-{index.ToString().PadLeft(3, '0')}-{childIndex.ToString().PadLeft(3, '0')}-{type.ToString().ToLower()}.{extension}";
         }
 
         /// <summary>

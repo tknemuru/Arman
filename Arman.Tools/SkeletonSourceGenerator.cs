@@ -61,7 +61,7 @@ namespace Arman.Tools
             {
                 for (var i = 1; i <= 5; i++)
                 {
-                    path = $"{RootDir}/Arman.Tests/Resources/{upperId}Test/001-00{i}-in.txt";
+                    path = $"{RootDir}/Arman.Tests/Resources/{upperId}Test/{upperId}-001-00{i}-in.txt";
                     FileHelper.WriteLine("", path, false);
                 }
             }
