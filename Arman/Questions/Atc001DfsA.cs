@@ -11,6 +11,9 @@ namespace Arman.Questions
     /// </summary>
     public class Atc001DfsA
     {
+        /// <summary>
+        /// 方向
+        /// </summary>
         private enum Direction
         {
             None,
@@ -19,6 +22,10 @@ namespace Arman.Questions
             Right,
             Left
         }
+
+        /// <summary>
+        /// 方向の移動量
+        /// </summary>
         private static readonly Dictionary<Direction, int[]> DirectionMoves = new Dictionary<Direction, int[]>()
         {
             { Direction.Up, new int[] { 0, -1 } },
@@ -26,6 +33,7 @@ namespace Arman.Questions
             { Direction.Right, new int[] { 1, 0 } },
             { Direction.Left, new int[] { -1, 0 } }
         };
+
         public static void Main(string[] args)
         {
             var sw = new System.IO.StreamWriter(Console.OpenStandardOutput()) { AutoFlush = false };
@@ -60,8 +68,8 @@ namespace Arman.Questions
 
         public static string Resolve(int H, int W, string[] rows)
         {
-            var wall = Enumerable.Range(0, W + 2).Aggregate(string.Empty, (p, c) => $"{p}#");
-            var map = new List<string>();
+            var wall = Enumerable.Range(0, W + 2).Select(r => true).ToList();
+            var map = new List<List<bool>>();
             var s = new int[2];
             var g = new int[2];
             map.Add(wall);
@@ -79,28 +87,40 @@ namespace Arman.Questions
                     g[0] = gX + 1;
                     g[1] = i + 1;
                 }
-                map.Add($"#{rows[i]}#");
+                var boolRow = new List<bool>();
+                boolRow.Add(true);
+                foreach (var r in  rows[i])
+                {
+                    var val = r == '#';
+                    boolRow.Add(val);
+                }
+                boolRow.Add(true);
+                map.Add(boolRow);
             }
             map.Add(wall);
-            var mapArray = map.ToArray();
-            var can = CanGoal(s, g, mapArray);
+            var can = CanGoal(s, g, map);
             return can ? "Yes" : "No";
         }
 
-        private static bool CanGoal(int[] current, int[] g, string[] map)
+        /// <summary>
+        /// ゴールできるかどうか
+        /// </summary>
+        /// <param name="current">現在位置</param>
+        /// <param name="g">ゴール位置</param>
+        /// <param name="map">地図</param>
+        /// <returns>ゴールできるかどうか</returns>
+        private static bool CanGoal(int[] current, int[] g, List<List<bool>> map)
         {
             if (g[0] == current[0] && g[1] == current[1])
             {
                 return true;
             }
-            if (map[current[1]][current[0]] == '#')
+            if (map[current[1]][current[0]])
             {
                 return false;
             }
             // 現在値を壁で塗りつぶす
-            var orgRow = map[current[1]];
-            var index = current[0];
-            map[current[1]] = $"{orgRow.Substring(0, index)}{"#"}{orgRow.Substring(index + 1)}";
+            map[current[1]][current[0]] = true;
             var result = false;
             foreach (var dir in DirectionMoves)
             {
@@ -114,6 +134,12 @@ namespace Arman.Questions
             return result;
         }
 
+        /// <summary>
+        /// 指定した方向に移動します。
+        /// </summary>
+        /// <param name="curr">現在位置</param>
+        /// <param name="dir">方向</param>
+        /// <returns>指定した方向に移動した座標</returns>
         private static int[] AddDirection(int[] curr, Direction dir)
         {
             var move = DirectionMoves[dir];
