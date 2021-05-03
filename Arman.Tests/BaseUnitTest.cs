@@ -31,11 +31,12 @@ namespace Arman.Tests
         /// <param name="index">インデックス</param>
         /// <param name="childIndex">子インデックス</param>
         /// <param name="type">リソース種別</param>
-        /// <param name="extension">拡張子</param>
-        protected IEnumerable<string> ReadResource(int index, int childIndex, ResourceType type, string extension = "txt")
+        /// <param name="trim">空行を除くかどうか</param>
+        protected IEnumerable<string> ReadResource(int index, int childIndex, ResourceType type, bool trim = true)
         {
-            var path = this.GetResourcePath(index, childIndex, type, extension);
-            var lines = FileHelper.ReadTextLines(path);
+            var path = this.GetResourcePath(index, childIndex, type);
+            var lines = FileHelper.ReadTextLines(path)
+                .Where(l => !trim || !string.IsNullOrWhiteSpace(l));
             return lines;
         }
     }
