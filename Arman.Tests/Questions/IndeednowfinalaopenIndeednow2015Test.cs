@@ -52,6 +52,11 @@ namespace Arman.Tests
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }
+            actual = IndeednowfinalaopenIndeednow2015.Resolve2(input);
+            for (var i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Arman.Questions
                 }
                 inputs.Add(line);
             }
-            var result = Resolve(inputs.ToArray());
+            var result = Resolve2(inputs.ToArray());
 
             foreach (var r in result)
             {
@@ -156,6 +156,36 @@ namespace Arman.Questions
                     JobsValIdx[idx][val].Add(i);
                 }
             }
+        }
+
+        public static long[] Resolve2(string[] inputs)
+        {
+            var nums = inputs[0].Split(' ').Select(i => int.Parse(i)).ToArray();
+            var jobN = nums[0];
+            var menN = nums[1];
+            var jobs = inputs.Skip(1).Take(jobN).Select(iStr => iStr.Split(' ').Select(i => long.Parse(i)).ToArray())
+                .ToArray();
+            var mens = inputs.Skip(1 + jobN).Select(iStr => iStr.Split(' ').Select(i => long.Parse(i)).ToArray())
+                .ToArray();
+            long[,,] dp = new long[102, 102, 102];
+            foreach (var j in jobs)
+            {
+                dp[j[0], j[1], j[2]] = Math.Max(dp[j[0], j[1], j[2]], j[3]);
+            }
+            for (var i = 0; i < 101; i++)
+            {
+                for (var j = 0; j < 101; j++)
+                {
+                    for (var k = 0; k < 101; k++)
+                    {
+                        dp[i + 1, j, k] = Math.Max(dp[i + 1, j, k], dp[i, j, k]);
+                        dp[i, j + 1, k] = Math.Max(dp[i, j + 1, k], dp[i, j, k]);
+                        dp[i, j, k + 1] = Math.Max(dp[i, j, k + 1], dp[i, j, k]);
+                    }
+                }
+            }
+            var fees = mens.Select(m => dp[m[0], m[1], m[2]]).ToArray();
+            return fees;
         }
     }
 }
