@@ -27,7 +27,7 @@ namespace Arman.Tools
             var ids = url.Split('/').Last().Split('_');
             var idKey = ids[0] == rootId ? ids[0] : $"{rootId}{ids[0].Substring(0, 1).ToUpper()}{ids[0].Substring(1)}";
             var idLevel = ids[1];
-            var upperId = $"{idKey.Substring(0, 1).ToUpper()}{idKey.Substring(1)}{idLevel.ToUpper()}";
+            var upperId = $"{idKey.Substring(0, 1).ToUpper()}{idKey.Substring(1)}{idLevel.ToUpper()}".Replace("_", "").Replace("-", "");
             Func<string, string> replaceTemplate = (string l) =>
             {
                 var r = l
